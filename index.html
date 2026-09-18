@@ -66,7 +66,7 @@ let valid=total>=3000 && ids.length>0 && name.length>0 && phone.length>=10 && ad
 let msg='Hello Gowsalya Crackers, I would like to place an order:%0A%0A';
 ids.forEach(id=>{let p=products.find(x=>x.id==id);msg+=p.name+' - Qty: '+cart[id]+' - ₹'+money(p.price*cart[id])+'%0A'});
 msg+='%0ASubtotal: ₹'+money(total)+'%0ADelivery Area: '+encodeURIComponent(area)+'%0AShipping: To be confirmed according to delivery area%0A%0AMinimum order: ₹3,000%0AUPI ID: muthusubash2003@axl%0A%0APlease confirm shipping charges and final payable amount.';
-let wa=document.getElementById('wa');wa.href=valid?waLink(msg,true):'#';wa.style.opacity=valid?'1':'.55';wa.textContent=total<3000?'Minimum Order ₹3,000':'Send Order on WhatsApp';
+let wa=document.getElementById('wa');wa.href=waLink(msg,true);wa.style.opacity='1'; Order ₹3,000':'Send Order on WhatsApp';
 let upi='upi://pay?pa='+encodeURIComponent('muthusubash2003@axl')+'&pn='+encodeURIComponent('Gowsalya Crackers')+'&am='+encodeURIComponent(total.toFixed(2))+'&cu=INR';
 let up=document.getElementById('upiPay');up.href=valid?upi:'#';up.style.opacity=valid?'1':'.55';up.textContent=total<3000?'💳 UPI Available After ₹3,000 Minimum':'💳 Pay ₹'+money(total)+' via UPI';
 }
