@@ -3,895 +3,311 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fireworks Store</title>
-
+<meta name="theme-color" content="#8b0000">
+<title>GOWSALYA CRACKERS | 2026</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#fff8ef;
-  color:#222;
-}
-header{
-  background:linear-gradient(135deg,#b30000,#ff6a00);
-  color:white;
-  padding:20px 15px;
-  text-align:center;
-}
-header h1{margin:0;font-size:28px}
-header p{margin:8px 0 0}
+body{margin:0;font-family:Arial,sans-serif;background:#fff8ef;color:#222}
+header{background:linear-gradient(135deg,#7b0000,#f05a00);color:#fff;text-align:center;padding:22px 14px}
+header h1{margin:0;font-size:30px}
+header .sub{margin:7px 0;font-weight:700}
+.contact{font-size:14px;line-height:1.7}
+.contact a{color:#fff;text-decoration:none}
+.badge{display:inline-block;background:#ffd54f;color:#6b0000;padding:6px 10px;border-radius:999px;font-weight:800;margin-top:8px}
+.toolbar{position:sticky;top:0;z-index:10;background:#fff;padding:12px;box-shadow:0 2px 10px #ccc}
+.search,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;font-size:16px;background:#fff}
+select{margin-top:9px}
+.count{padding:10px 15px 0;font-weight:700;color:#7b0000}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;padding:15px}
+.card{background:#fff;border-radius:14px;padding:12px;box-shadow:0 2px 8px #ddd;display:flex;flex-direction:column}
+.icon{height:95px;border-radius:10px;background:linear-gradient(135deg,#fff0d5,#ffd27d);display:flex;align-items:center;justify-content:center;font-size:43px}
+.no{font-size:11px;color:#777;margin-top:8px}
+.card h3{font-size:16px;line-height:1.3;margin:6px 0}
+.cat{font-size:12px;color:#777;min-height:30px}
+.price{color:#c40000;font-size:20px;font-weight:800;margin-top:7px}
+.mrp{color:#999;text-decoration:line-through;font-size:13px}
+.discount{display:inline-block;background:#078a3b;color:#fff;padding:4px 7px;border-radius:6px;font-size:11px;margin-top:6px;font-weight:700}
+.add{width:100%;margin-top:10px;background:#ff5a00;color:#fff;font-weight:800;padding:11px;border:0;border-radius:9px}
+.custom{background:#6a1b9a}
+.cartButton{position:fixed;right:15px;bottom:18px;z-index:20;background:#078a3b;color:#fff;border:0;border-radius:50px;padding:14px 18px;font-size:16px;box-shadow:0 4px 12px #777;font-weight:800}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:30}
+.cartBox{position:absolute;right:0;top:0;height:100%;width:min(470px,100%);background:#fff;padding:16px;overflow:auto}
+.cartHeader{display:flex;justify-content:space-between;align-items:center}
+.close{background:#eee;border:0;border-radius:9px;padding:9px;font-size:20px}
+.cartItem{border-bottom:1px solid #ddd;padding:12px 0}
+.cartName{font-weight:800;line-height:1.35}
+.controls{display:flex;align-items:center;gap:7px;margin-top:8px;flex-wrap:wrap}
+.controls button{background:#eee;border:0;border-radius:7px;min-width:35px;padding:8px;font-size:18px}
+.remove{background:#c40000!important;color:#fff!important;font-size:13px!important;padding:8px 10px!important}
+.total{font-size:22px;font-weight:800;margin:17px 0;color:#7b0000}
+.form{border-top:2px solid #eee;margin-top:12px;padding-top:12px}
+.form h3{margin:5px 0 10px}
+.form input,.form textarea{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:5px 0;font-size:15px}
+.form textarea{min-height:75px;resize:vertical}
+.order,.email{width:100%;color:#fff;border:0;border-radius:9px;padding:12px;font-size:16px;font-weight:800;margin-top:8px}
+.order{background:#25d366}
+.email{background:#1565c0}
+.upi{margin-top:14px;padding:14px;background:#f5f5f5;border-radius:12px}
+.upi h3{margin:0 0 8px}
+.pay{width:100%;background:#673ab7;color:#fff;border:0;border-radius:9px;padding:12px;font-weight:800;margin-top:8px}
+.note{font-size:12px;color:#777;line-height:1.5}
+.empty{grid-column:1/-1;text-align:center;padding:35px;color:#777}
+footer{text-align:center;padding:28px 15px;background:#222;color:#fff;margin-top:20px;line-height:1.7}
+@media(max-width:420px){header h1{font-size:25px}.products{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:9px}.card{padding:9px}.icon{height:80px;font-size:36px}}
 
-.top{
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:white;
-  padding:12px;
-  box-shadow:0 2px 8px #bbb;
-}
-
-.search{
-  width:100%;
-  padding:13px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  font-size:16px;
-}
-
-select{
-  width:100%;
-  margin-top:10px;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  background:white;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:12px;
-  padding:15px;
-}
-
-.card{
-  background:white;
-  border-radius:14px;
-  padding:12px;
-  box-shadow:0 2px 8px #ddd;
-}
-
-.icon{
-  height:100px;
-  background:linear-gradient(135deg,#fff0d5,#ffd27d);
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:45px;
-}
-
-.card h3{
-  font-size:16px;
-  margin:10px 0 6px;
-}
-
-.category{
-  font-size:12px;
-  color:#777;
-}
-
-.price{
-  color:#d00000;
-  font-size:20px;
-  font-weight:bold;
-  margin-top:8px;
-}
-
-.mrp{
-  color:#999;
-  text-decoration:line-through;
-  font-size:13px;
-}
-
-.discount{
-  display:inline-block;
-  background:#008a35;
-  color:white;
-  padding:4px 7px;
-  border-radius:5px;
-  font-size:11px;
-  margin-top:5px;
-}
-
-button{
-  border:0;
-  border-radius:9px;
-  padding:10px;
-  cursor:pointer;
-}
-
-.add{
-  width:100%;
-  margin-top:10px;
-  background:#ff5a00;
-  color:white;
-  font-weight:bold;
-}
-
-.cartButton{
+.toast{
   position:fixed;
-  right:15px;
-  bottom:18px;
-  z-index:20;
-  background:#008a35;
-  color:white;
-  border-radius:50px;
-  padding:14px 18px;
-  font-size:16px;
-  box-shadow:0 4px 12px #777;
-}
-
-.cart{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  z-index:30;
-}
-
-.cartBox{
-  position:absolute;
-  right:0;
-  top:0;
-  height:100%;
-  width:min(430px,100%);
-  background:white;
-  padding:18px;
-  overflow:auto;
-}
-
-.cartHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.close{
-  background:#eee;
-  font-size:20px;
-}
-
-.cartItem{
-  border-bottom:1px solid #ddd;
-  padding:12px 0;
-}
-
-.cartName{
-  font-weight:bold;
-}
-
-.controls{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:8px;
-}
-
-.controls button{
-  background:#eee;
-  min-width:35px;
-  font-size:18px;
-}
-
-.remove{
-  background:#d00000 !important;
-  color:white;
-  font-size:13px !important;
-  padding:7px 10px !important;
-}
-
-.total{
-  font-size:22px;
-  font-weight:bold;
-  margin:18px 0;
-}
-
-.order{
-  width:100%;
-  background:#25d366;
-  color:white;
-  font-size:17px;
-  font-weight:bold;
-  margin-top:8px;
-}
-
-.upi{
-  margin-top:15px;
-  padding:15px;
-  background:#f4f4f4;
-  border-radius:12px;
-}
-
-.upi h3{margin-top:0}
-
-.upi input{
-  width:100%;
-  padding:11px;
-  border:1px solid #ccc;
-  border-radius:8px;
-  margin:5px 0;
-}
-
-.pay{
-  width:100%;
-  background:#673ab7;
-  color:white;
-  font-weight:bold;
-  margin-top:8px;
-}
-
-.empty{
-  text-align:center;
-  padding:30px;
-  color:#777;
-}
-
-footer{
-  text-align:center;
-  padding:30px 15px;
+  left:50%;
+  bottom:82px;
+  transform:translateX(-50%);
   background:#222;
-  color:white;
-  margin-top:20px;
+  color:#fff;
+  padding:10px 16px;
+  border-radius:30px;
+  z-index:50;
+  font-weight:700;
+  display:none;
+  box-shadow:0 3px 12px #777;
 }
+
 </style>
 </head>
-
 <body>
 
 <header>
-  <h1>🎆 Fireworks Store 🎆</h1>
-  <p>Special Discount • Easy Ordering</p>
+  <h1>🎆 GOWSALYA CRACKERS 🎆</h1>
+  <div class="sub">Crackers Wholesale & Retail</div>
+  <div class="contact">
+    📱 WhatsApp: <a href="https://wa.me/916379577670">6379577670</a><br>
+    ☎️ Ph: 6374659289, 9655714210<br>
+    📧 Email: <a href="mailto:gowsalyacrackers@gmail.com">gowsalyacrackers@gmail.com</a>
+  </div>
+  <div class="badge">PRICE LIST • 2026</div>
 </header>
 
-<div class="top">
-  <input
-    class="search"
-    id="search"
-    placeholder="🔍 Search products..."
-  >
-
-  <select id="category">
-    <option value="All">All Categories</option>
-  </select>
+<div class="toolbar">
+  <input id="search" class="search" placeholder="🔍 Search products...">
+  <select id="category"><option value="All">All Categories</option></select>
 </div>
-
+<div class="count" id="count"></div>
 <div class="products" id="products"></div>
 
-<button class="cartButton" onclick="openCart()">
-  🛒 Cart (<span id="cartCount">0</span>)
-</button>
+<button class="cartButton" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
 
-<div class="cart" id="cart">
+<div class="overlay" id="overlay">
   <div class="cartBox">
-
     <div class="cartHeader">
       <h2>🛒 Your Cart</h2>
       <button class="close" onclick="closeCart()">✕</button>
     </div>
 
     <div id="cartItems"></div>
+    <div class="total">Total: ₹<span id="total">0.00</span></div>
 
-    <div class="total">
-      Total: ₹<span id="total">0.00</span>
+    <div class="form">
+      <h3>👤 Customer Details</h3>
+      <input id="customerName" placeholder="Customer Name *">
+      <input id="customerPhone" type="tel" placeholder="Phone Number *">
+      <input id="customerEmail" type="email" placeholder="Email ID *">
+      <textarea id="customerAddress" placeholder="Delivery Address *"></textarea>
+      <textarea id="customerNotes" placeholder="Order Notes (optional)"></textarea>
     </div>
 
-    <button class="order" onclick="whatsappOrder()">
-      📱 Order on WhatsApp
-    </button>
+    <button class="order" onclick="whatsappOrder()">📱 Send Order on WhatsApp</button>
+    <button class="email" onclick="emailOrder()">📧 Send Order by Email</button>
 
     <div class="upi">
       <h3>💳 UPI Payment</h3>
-
-      <p>UPI ID:</p>
-
-      <!-- CHANGE THIS UPI ID -->
-      <input
-        id="upiId"
-        value="muthusubash2003@axl"
-        readonly
-      >
-
-      <button class="pay" onclick="payUPI()">
-        💳 Pay with UPI
-      </button>
-
-      <p style="font-size:12px;color:#777">
-        Replace YOURUPI@upi with your actual UPI ID.
-      </p>
+      <div><b>UPI ID:</b> muthusubash2003@axl</div>
+      <button class="pay" onclick="payUPI()">💳 Pay with UPI</button>
+      <div class="note">The UPI button opens your phone's UPI app with the cart total. Please verify the amount and UPI ID before paying.</div>
     </div>
-
   </div>
 </div>
 
 <footer>
-  <p>🎆 Thank you for shopping with us 🎆</p>
+  <b>GOWSALYA CRACKERS</b><br>
+  Wholesale & Retail • 2026<br>
+  WhatsApp: 6379577670 • Email: gowsalyacrackers@gmail.com
 </footer>
 
 <script>
-
-/* ==================================================
-   PRODUCTS
-   Add your existing products inside this array.
-   ================================================== */
-
-const products = [
-
-  {
-    id:1,
-    name:'4" Gold Lakshmi / Bheem (5Pcs)',
-    rate:112,
-    price:33.60,
-    unit:'1 PKT',
-    category:'Single Sound Crackers',
-    discount:70
-  },
-
-  {
-    id:2,
-    name:'23/4" Kuruvi / Lakshmi (5Pcs)',
-    rate:28,
-    price:8.40,
-    unit:'1 PKT',
-    category:'Single Sound Crackers',
-    discount:70
-  },
-
-  {
-    id:3,
-    name:'3 1/2" Lakshmi / Narthaki / Bheem / Parrot (5Pcs)',
-    rate:48,
-    price:14.40,
-    unit:'1 PKT',
-    category:'Single Sound Crackers',
-    discount:70
-  },
-
-  {
-    id:4,
-    name:'Bijili Crackers',
-    rate:50,
-    price:15,
-    unit:'1 PKT',
-    category:'Bijili Crackers',
-    discount:70
-  },
-
-  {
-    id:5,
-    name:'Flower Pots',
-    rate:100,
-    price:30,
-    unit:'1 BOX',
-    category:'Flower Pots',
-    discount:70
-  },
-
-  {
-    id:6,
-    name:'Colour Fountain',
-    rate:150,
-    price:45,
-    unit:'1 BOX',
-    category:'Colour Fountains',
-    discount:70
-  },
-
-  {
-    id:7,
-    name:'Twinkling Stars',
-    rate:80,
-    price:24,
-    unit:'1 BOX',
-    category:'Twinkling Stars',
-    discount:70
-  },
-
-  {
-    id:8,
-    name:'Rocket',
-    rate:120,
-    price:36,
-    unit:'1 BOX',
-    category:'Rockets & Chakkaras',
-    discount:70
-  },
-
-  {
-    id:9,
-    name:'Gift Pack (16-Items)-Kids',
-    rate:240,
-    price:240,
-    unit:'1 BOX',
-    category:'Gift Packs',
-    discount:0
-  },
-
-  {
-    id:10,
-    name:'Gift Pack (25-Items)',
-    rate:350,
-    price:350,
-    unit:'1 BOX',
-    category:'Gift Packs',
-    discount:0
-  },
-
-  {
-    id:11,
-    name:'Gift Pack (50-Items)',
-    rate:1000,
-    price:1000,
-    unit:'1 BOX',
-    category:'Gift Packs',
-    discount:0
-  },
-
-  {
-    id:12,
-    name:'Premium Family Combo',
-    rate:3000,
-    price:3000,
-    unit:'1 COMBO',
-    category:'Premium Family Combo Offers',
-    discount:0
-  },
-
-  {
-    id:13,
-    name:'Premium Family Combo',
-    rate:5000,
-    price:5000,
-    unit:'1 COMBO',
-    category:'Premium Family Combo Offers',
-    discount:0
-  },
-
-  {
-    id:14,
-    name:'Fruits Series',
-    rate:200,
-    price:60,
-    unit:'1 BOX',
-    category:'New Arrivals',
-    discount:70
-  }
-
-];
-
-
-/* ==================================================
-   CART
-   ================================================== */
-
+const products = [{"id":"p1","no":1,"name":"4\" Gold Lakshmi / Bheem (5Pcs)","rate":112,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":33.6},{"id":"p2","no":2,"name":"2 3/4\" Kuruvi / Lakshmi (5Pcs)","rate":28,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":8.4},{"id":"p3","no":3,"name":"3 1/2\" Lakshmi / Narthaki / Bheem / Parrot (5Pcs)","rate":48,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":14.4},{"id":"p4","no":4,"name":"4\" Lakshmi / Narthaki / Bheem / Parrot (5Pcs)","rate":68,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":20.4},{"id":"p5","no":5,"name":"4\" Deluxe Lakshmi / KGF (5Pcs)","rate":88,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":26.4},{"id":"p6","no":6,"name":"5\" Special Deluxe Lion / Spiderman / KGF / Hulk (5Pcs)","rate":160,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":48.0},{"id":"p7","no":7,"name":"5\" Lion Gun Red / Pink / Green / Violet (5Pcs)","rate":260,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":78.0},{"id":"p8","no":8,"name":"6\" Giant Deluxe Lakshmi / Jallikattu (5Pcs)","rate":220,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":66.0},{"id":"p9","no":9,"name":"4\" Gold Lakshmi / Bheem (5Pcs) SPL-MF","rate":128,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":38.4},{"id":"p10","no":10,"name":"5\" SPL Deluxe Lion / Spiderman / KGF / Hulk (5Pcs) SPL-MF","rate":176,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":52.8},{"id":"p11","no":11,"name":"6\" Giant Deluxe Lakshmi / Jallikattu (5Pcs) SPL-MF","rate":240,"unit":"1 PKT","category":"Single Sound Crackers","discount":70,"price":72.0},{"id":"p12","no":12,"name":"4\" Gold Lakshmi / Bheem (1 BDL-10PKTS)","rate":1080,"unit":"1 BDL","category":"Single Sound Crackers","discount":70,"price":324.0},{"id":"p13","no":13,"name":"2 3/4\" Kuruvi / Lakshmi (1 BDL-25PKTS)","rate":600,"unit":"1 BDL","category":"Single Sound Crackers","discount":70,"price":180.0},{"id":"p14","no":14,"name":"3 1/2\" Lakshmi / Narthaki / Bheem / Parrot (1 BDL-15PKTS)","rate":660,"unit":"1 BDL","category":"Single Sound Crackers","discount":70,"price":198.0},{"id":"p15","no":15,"name":"4\" Lakshmi / Narthaki / Bheem / Parrot (1 BDL-10PKTS)","rate":640,"unit":"1 BDL","category":"Single Sound Crackers","discount":70,"price":192.0},{"id":"p16","no":16,"name":"4\" Deluxe Deluxe Lakshmi / KGF (1 BDL-10PKTS)","rate":840,"unit":"1 BDL","category":"Single Sound Crackers","discount":70,"price":252.0},{"id":"p17","no":17,"name":"5\" Special Deluxe Lion / Spiderman / KGF / Hulk (1 BDL-10PKTS)","rate":1560,"unit":"1 BDL","category":"Single Sound Crackers","discount":70,"price":468.0},{"id":"p18","no":18,"name":"6\" Giant Deluxe Lakshmi / Jallikattu (1 BDL-10PKTS)","rate":2160,"unit":"1 BDL","category":"Single Sound Crackers","discount":70,"price":648.0},{"id":"p19","no":19,"name":"Red Bijili Crackers (50Pcs)-Gold Bag","rate":100,"unit":"1 PKT","category":"Bijili Crackers","discount":70,"price":30.0},{"id":"p20","no":20,"name":"Red Bijili Crackers (100Pcs)-Gold Bag","rate":200,"unit":"1 PKT","category":"Bijili Crackers","discount":70,"price":60.0},{"id":"p21","no":21,"name":"Stripped Bijili Crackers (50Pcs)-Gold Bag","rate":120,"unit":"1 PKT","category":"Bijili Crackers","discount":70,"price":36.0},{"id":"p22","no":22,"name":"Stripped Bijili Crackers (100Pcs)-Gold Bag","rate":240,"unit":"1 PKT","category":"Bijili Crackers","discount":70,"price":72.0},{"id":"p23","no":23,"name":"28 Chorsa (1Pcs)","rate":88,"unit":"1 PKT","category":"Garlands Crackers","discount":70,"price":26.4},{"id":"p24","no":24,"name":"0.1K (1Pcs)","rate":176,"unit":"1 BOX","category":"Garlands Crackers","discount":70,"price":52.8},{"id":"p25","no":25,"name":"1K (1Pcs) (Short Counting)","rate":760,"unit":"1 BOX","category":"Garlands Crackers","discount":70,"price":228.0},{"id":"p26","no":26,"name":"1K (1Pcs)","rate":1200,"unit":"1 BOX","category":"Garlands Crackers","discount":70,"price":360.0},{"id":"p27","no":27,"name":"2K (1Pcs)","rate":2400,"unit":"1 BOX","category":"Garlands Crackers","discount":70,"price":720.0},{"id":"p28","no":28,"name":"5K (1Pcs)","rate":6000,"unit":"1 BOX","category":"Garlands Crackers","discount":70,"price":1800.0},{"id":"p29","no":29,"name":"10K (1Pcs)","rate":12000,"unit":"1 BOX","category":"Garlands Crackers","discount":70,"price":3600.0},{"id":"p30","no":30,"name":"28 Giant (1Pcs)","rate":100,"unit":"1 PKT","category":"Paper Bombs","discount":70,"price":30.0},{"id":"p31","no":31,"name":"56 Giant (1Pcs)","rate":200,"unit":"1 PKT","category":"Paper Bombs","discount":70,"price":60.0},{"id":"p32","no":32,"name":"1/4 Kg Adiyal (1Pcs)","rate":180,"unit":"1 BOX","category":"Paper Bombs","discount":70,"price":54.0},{"id":"p33","no":33,"name":"1/2 Kg Adiyal (1Pcs)","rate":360,"unit":"1 BOX","category":"Paper Bombs","discount":70,"price":108.0},{"id":"p34","no":34,"name":"1 Kg Adiyal (1Pcs)","rate":720,"unit":"1 BOX","category":"Paper Bombs","discount":70,"price":216.0},{"id":"p35","no":35,"name":"Magic Money Bank (2Pcs)","rate":800,"unit":"1 BOX","category":"Paper Bombs","discount":70,"price":240.0},{"id":"p36","no":36,"name":"Avatar Papper Bomb (10Pcs)","rate":800,"unit":"1 BOX","category":"Paper Bombs","discount":70,"price":240.0},{"id":"p37","no":34,"name":"Bullet Bomb (10Pcs)","rate":120,"unit":"1 BOX","category":"Bombs","discount":70,"price":36.0},{"id":"p38","no":35,"name":"Atom Bomb (10Pcs)","rate":180,"unit":"1 BOX","category":"Bombs","discount":70,"price":54.0},{"id":"p39","no":36,"name":"Hydro Bomb (10Pcs)","rate":240,"unit":"1 BOX","category":"Bombs","discount":70,"price":72.0},{"id":"p40","no":37,"name":"King of King Bomb (10Pcs) / Classic Bomb (10Pcs)","rate":320,"unit":"1 BOX","category":"Bombs","discount":70,"price":96.0},{"id":"p41","no":38,"name":"Agni Bomb (10Pcs)","rate":800,"unit":"1 BOX","category":"Bombs","discount":70,"price":240.0},{"id":"p42","no":39,"name":"Digital Bomb (10Pcs)","rate":880,"unit":"1 BOX","category":"Bombs","discount":70,"price":264.0},{"id":"p43","no":40,"name":"Flower Pots Big (10Pcs)","rate":280,"unit":"1 BOX","category":"Flower Pots","discount":70,"price":84.0},{"id":"p44","no":41,"name":"Flower Pots Special (10Pcs)","rate":360,"unit":"1 BOX","category":"Flower Pots","discount":70,"price":108.0},{"id":"p45","no":42,"name":"Flower Pots Ashoka (10Pcs)","rate":520,"unit":"1 BOX","category":"Flower Pots","discount":70,"price":156.0},{"id":"p46","no":43,"name":"Flower Pots Colour Kotti (10Pcs)","rate":840,"unit":"1 BOX","category":"Flower Pots","discount":70,"price":252.0},{"id":"p47","no":44,"name":"Flower Pots Colour Kotti Deluxe (10Pcs)","rate":1160,"unit":"1 BOX","category":"Flower Pots","discount":70,"price":348.0},{"id":"p48","no":45,"name":"Tin Fountains (1Pcs)","rate":300,"unit":"1 PCS","category":"Flower Pots","discount":70,"price":90.0},{"id":"p49","no":46,"name":"Tin Fountains (3Pcs)","rate":840,"unit":"1 PCS","category":"Flower Pots","discount":70,"price":252.0},{"id":"p50","no":47,"name":"Lollipop Fountain (2Pcs)","rate":720,"unit":"1 BOX","category":"Flower Pots","discount":70,"price":216.0},{"id":"p51","no":48,"name":"High Voltage Fountain (2Pcs)","rate":720,"unit":"1 BOX","category":"Flower Pots","discount":70,"price":216.0},{"id":"p52","no":49,"name":"Tricolour Fountain (5Pcs)-Colour","rate":1000,"unit":"1 BOX","category":"Flower Pots","discount":70,"price":300.0},{"id":"p53","no":50,"name":"Tricolour Fountain (5Pcs)-Colour with Crackling","rate":1120,"unit":"1 BOX","category":"Flower Pots","discount":70,"price":336.0},{"id":"p54","no":51,"name":"Colour Pots / Shower (5Pcs)","rate":400,"unit":"1 PCS","category":"Flower Pots","discount":70,"price":120.0},{"id":"p55","no":52,"name":"Colour Pots / Shower (5Pcs) - Multi Colour","rate":500,"unit":"1 PCS","category":"Flower Pots","discount":70,"price":150.0},{"id":"p56","no":53,"name":"Peacock Fountain-Colour (1Pcs)","rate":560,"unit":"1 PCS","category":"Flower Pots","discount":70,"price":168.0},{"id":"p57","no":54,"name":"Peacock Fountain-Multi-Colour (1Pcs)","rate":620,"unit":"1 PCS","category":"Flower Pots","discount":70,"price":186.0},{"id":"p58","no":55,"name":"Bada Peacock Fountain (1Pcs)","rate":1400,"unit":"1 PCS","category":"Flower Pots","discount":70,"price":420.0},{"id":"p59","no":56,"name":"Bada Peacock Fountain (1Pcs) Special","rate":1600,"unit":"1 PCS","category":"Flower Pots","discount":70,"price":480.0},{"id":"p60","no":57,"name":"Royal 2 in 1 (1Pcs)","rate":480,"unit":"1 PCS","category":"Flower Pots","discount":70,"price":144.0},{"id":"p61","no":58,"name":"Cocktail 5 in 1 (1 Pcs)","rate":700,"unit":"1 PCS","category":"Colour Fountains","discount":70,"price":210.0},{"id":"p62","no":59,"name":"Peacock Feathers (5Pcs)","rate":520,"unit":"1 BOX","category":"Colour Fountains","discount":70,"price":156.0},{"id":"p63","no":60,"name":"Android 4 in 1 Fountain","rate":900,"unit":"1 BOX","category":"Colour Fountains","discount":70,"price":270.0},{"id":"p64","no":61,"name":"3D Pops Shower (3Pcs)","rate":300,"unit":"1 BOX","category":"Colour Fountains","discount":70,"price":90.0},{"id":"p65","no":62,"name":"Dragon Cool Shower (1Pcs)","rate":500,"unit":"1 BOX","category":"Colour Fountains","discount":70,"price":150.0},{"id":"p66","no":63,"name":"Sizzler Shower (1Pcs)","rate":500,"unit":"1 BOX","category":"Colour Fountains","discount":70,"price":150.0},{"id":"p67","no":64,"name":"1 Cone Fountain (2Pcs)","rate":600,"unit":"1 BOX","category":"Colour Fountains","discount":70,"price":180.0},{"id":"p68","no":65,"name":"Robo Series (5Pcs)","rate":600,"unit":"1 BOX","category":"Colour Fountains","discount":70,"price":180.0},{"id":"p69","no":66,"name":"Kung Fu Banda (5Pcs)","rate":700,"unit":"1 BOX","category":"Colour Fountains","discount":70,"price":210.0},{"id":"p70","no":67,"name":"Android 4 in 1 Fountain (4Pcs)","rate":900,"unit":"1 BOX","category":"Colour Fountains","discount":70,"price":270.0},{"id":"p71","no":68,"name":"Popcorn candle (2Pcs) / (3Pcs)","rate":800,"unit":"1 BOX","category":"Pencils","discount":70,"price":240.0},{"id":"p72","no":69,"name":"Lollipop (5Pcs)","rate":900,"unit":"1 BOX","category":"Pencils","discount":70,"price":270.0},{"id":"p73","no":70,"name":"Pencil (Water Falls / Popcorn) (5Pcs)","rate":720,"unit":"1 BOX","category":"Pencils","discount":70,"price":216.0},{"id":"p74","no":71,"name":"1 1/2' Twinkling Star (10Pcs)","rate":112,"unit":"1 BOX","category":"Twinkling Stars","discount":70,"price":33.6},{"id":"p75","no":72,"name":"4' Twinkling Star (10Pcs)","rate":240,"unit":"1 BOX","category":"Twinkling Stars","discount":70,"price":72.0},{"id":"p76","no":73,"name":"Rocket Bomb (10Pcs)","rate":320,"unit":"1 BOX","category":"Rockets","discount":70,"price":96.0},{"id":"p77","no":74,"name":"Two Sound Rockets (10Pcs)","rate":480,"unit":"1 BOX","category":"Rockets","discount":70,"price":144.0},{"id":"p78","no":75,"name":"Whistling Rockets","rate":700,"unit":"1 BOX","category":"Rockets","discount":70,"price":210.0},{"id":"p79","no":76,"name":"Chakkara Big (10Pcs)","rate":180,"unit":"1 BOX","category":"Ground Chakkaras","discount":70,"price":54.0},{"id":"p80","no":77,"name":"Chakkara Special (10Pcs)","rate":300,"unit":"1 BOX","category":"Ground Chakkaras","discount":70,"price":90.0},{"id":"p81","no":78,"name":"Chakkara Deluxe (10Pcs)","rate":560,"unit":"1 BOX","category":"Ground Chakkaras","discount":70,"price":168.0},{"id":"p82","no":79,"name":"Wire Chakkar (10Pcs)","rate":800,"unit":"1 BOX","category":"Ground Chakkaras","discount":70,"price":240.0},{"id":"p83","no":80,"name":"7CM Electric (10Pcs)","rate":48,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":14.4},{"id":"p84","no":81,"name":"7CM Colour (10Pcs)","rate":56,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":16.8},{"id":"p85","no":82,"name":"7CM Green (10Pcs)","rate":72,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":21.6},{"id":"p86","no":83,"name":"7CM Red (10Pcs)","rate":80,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":24.0},{"id":"p87","no":84,"name":"10CM Electric (10Pcs)","rate":64,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":19.2},{"id":"p88","no":85,"name":"10CM Colour (10Pcs)","rate":72,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":21.6},{"id":"p89","no":86,"name":"10CM Green (10Pcs)","rate":88,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":26.4},{"id":"p90","no":87,"name":"10CM Red (10Pcs)","rate":96,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":28.8},{"id":"p91","no":88,"name":"12CM Electric (10Pcs)","rate":96,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":28.8},{"id":"p92","no":89,"name":"12CM Colour (10Pcs)","rate":88,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":26.4},{"id":"p93","no":90,"name":"12CM Green (10Pcs)","rate":104,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":31.2},{"id":"p94","no":91,"name":"12CM Red (10Pcs)","rate":112,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":33.6},{"id":"p95","no":92,"name":"15CM Electric (10Pcs)","rate":180,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":54.0},{"id":"p96","no":93,"name":"15CM Colour (10Pcs)","rate":200,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":60.0},{"id":"p97","no":94,"name":"15CM Green (10Pcs)","rate":220,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":66.0},{"id":"p98","no":95,"name":"15CM Red (10Pcs)","rate":240,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":72.0},{"id":"p99","no":96,"name":"30CM Electric (5Pcs)","rate":180,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":54.0},{"id":"p100","no":97,"name":"30CM Colour (5Pcs)","rate":200,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":60.0},{"id":"p101","no":98,"name":"30CM Green (5Pcs)","rate":220,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":66.0},{"id":"p102","no":99,"name":"30CM Red (5Pcs)","rate":240,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":72.0},{"id":"p103","no":100,"name":"50CM Electric (5Pcs)","rate":1040,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":312.0},{"id":"p104","no":101,"name":"50CM Colour (5Pcs)","rate":1120,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":336.0},{"id":"p105","no":102,"name":"50CM SPL (5Pcs)","rate":1200,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":360.0},{"id":"p106","no":103,"name":"Umbrella Sparklers (1Pcs)","rate":800,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":240.0},{"id":"p107","no":104,"name":"Bada Asarapi (5 Pcs)","rate":640,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":192.0},{"id":"p108","no":105,"name":"Mini Siren (5Pcs)","rate":640,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":192.0},{"id":"p109","no":106,"name":"Mega Siren (3Pcs)","rate":720,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":216.0},{"id":"p110","no":107,"name":"Water Queen / Snow Island / Touch & Touch (1Pcs)","rate":720,"unit":"1 PCS","category":"Joyful Sparklers","discount":70,"price":216.0},{"id":"p111","no":108,"name":"Selfie Stick (3Pcs)","rate":360,"unit":"1 BOX","category":"Joyful Sparklers","discount":70,"price":108.0},{"id":"p112","no":109,"name":"Selfie Stick (5Pcs)","rate":500,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":150.0},{"id":"p113","no":110,"name":"Photo Flash (5Pcs)","rate":240,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":72.0},{"id":"p114","no":111,"name":"Photo Flash (5Pcs)-Colour Mix","rate":320,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":96.0},{"id":"p115","no":112,"name":"Helicopter (5Pcs)","rate":400,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":120.0},{"id":"p116","no":113,"name":"Drone (5Pcs)","rate":600,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":180.0},{"id":"p117","no":114,"name":"H20 Gun (2Pcs)","rate":600,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":180.0},{"id":"p118","no":115,"name":"Top Gun (5Pcs)","rate":900,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":270.0},{"id":"p119","no":116,"name":"Rainbow Colour Smoke (1Pcs)","rate":480,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":144.0},{"id":"p120","no":117,"name":"Colour Smoke (3Pcs)","rate":520,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":156.0},{"id":"p121","no":118,"name":"Mega Shower (1Pcs)","rate":480,"unit":"1 PCS","category":"Magical Fireworks","discount":70,"price":144.0},{"id":"p122","no":119,"name":"Kit-Kat (10Pcs)","rate":480,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":144.0},{"id":"p123","no":120,"name":"Ganga Jamuna (5Pcs)","rate":360,"unit":"1 PKT","category":"Magical Fireworks","discount":70,"price":108.0},{"id":"p124","no":121,"name":"Dancing Butterfly (10Pcs)","rate":440,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":132.0},{"id":"p125","no":122,"name":"Spinner Big (10Pcs)","rate":500,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":150.0},{"id":"p126","no":123,"name":"Sky Shot (5Pcs)","rate":320,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":96.0},{"id":"p127","no":124,"name":"Penta Shot (5Pcs)","rate":500,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":150.0},{"id":"p128","no":125,"name":"Seven Shot (5Pcs)","rate":600,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":180.0},{"id":"p129","no":126,"name":"4*4 Wheel (5Pcs)","rate":640,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":192.0},{"id":"p130","no":127,"name":"Two Sound Crackers (5Pcs)","rate":140,"unit":"1 BOX","category":"Magical Fireworks","discount":70,"price":42.0},{"id":"p131","no":128,"name":"Jee Boom Pa","rate":160,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":48.0},{"id":"p132","no":129,"name":"Roll Cap (10Strip)","rate":200,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":60.0},{"id":"p133","no":130,"name":"Ring Gap Gun Set (Gun-1 & Strips)","rate":600,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":180.0},{"id":"p134","no":131,"name":"Anaconda Serpent (10 Boxes)","rate":400,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":120.0},{"id":"p135","no":132,"name":"Super Deluxe Matches (10 Boxes)","rate":280,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":84.0},{"id":"p136","no":133,"name":"Judo Matches (10Boxes)","rate":320,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":96.0},{"id":"p137","no":134,"name":"Jumbo Matches (10Boxes)","rate":400,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":120.0},{"id":"p138","no":135,"name":"Crackling Mela Matches (10Boxes)","rate":480,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":144.0},{"id":"p139","no":136,"name":"Assorted Cartoons (10Pcs)","rate":120,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":36.0},{"id":"p140","no":137,"name":"Snake Cartoons (5Pcs)","rate":80,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":24.0},{"id":"p141","no":138,"name":"Bat Ball (1Pcs)","rate":700,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":210.0},{"id":"p142","no":139,"name":"Plastic Gun (1Pcs)","rate":160,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":48.0},{"id":"p143","no":140,"name":"Old is Gold (25Pcs)","rate":800,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":240.0},{"id":"p144","no":141,"name":"Plastic Bombs (10Pcs)","rate":200,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":60.0},{"id":"p145","no":142,"name":"Chotta Fancy (1Pcs)","rate":140,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":42.0},{"id":"p146","no":143,"name":"Chotta Fancy 5 IN 1 (5Pcs)","rate":1000,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":300.0},{"id":"p147","no":144,"name":"2\" Fancy (1Pcs)","rate":400,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":120.0},{"id":"p148","no":145,"name":"2\" Fancy (3Pcs)","rate":1200,"unit":"1 BOX","category":"Kids Grand Collections","discount":70,"price":360.0},{"id":"p149","no":146,"name":"2\" Fancy (3Pcs)-Special","rate":1320,"unit":"1 BOX","category":"Attractive Fancy Collections","discount":70,"price":396.0},{"id":"p150","no":147,"name":"3 1/2\" Fancy (1Pcs)","rate":960,"unit":"1 BOX","category":"Attractive Fancy Collections","discount":70,"price":288.0},{"id":"p151","no":148,"name":"3 1/2\" Fancy (1Pcs)-Special","rate":1080,"unit":"1 BOX","category":"Attractive Fancy Collections","discount":70,"price":324.0},{"id":"p152","no":149,"name":"3 1/2\" Fancy (2Pcs)","rate":2080,"unit":"1 BOX","category":"Attractive Fancy Collections","discount":70,"price":624.0},{"id":"p153","no":150,"name":"3 1/2\" Fancy-Gunout (1Pcs)","rate":800,"unit":"1 BOX","category":"Attractive Fancy Collections","discount":70,"price":240.0},{"id":"p154","no":151,"name":"3 1/2\" Fancy Double Ball (1Pcs)","rate":1520,"unit":"1 BOX","category":"Attractive Fancy Collections","discount":70,"price":456.0},{"id":"p155","no":152,"name":"3 1/2\" Fancy Seven Steps (1Pcs)","rate":1520,"unit":"1 BOX","category":"Attractive Fancy Collections","discount":70,"price":456.0},{"id":"p156","no":153,"name":"4\" Fancy (2Pcs)","rate":2200,"unit":"1 BOX","category":"Attractive Fancy Collections","discount":70,"price":660.0},{"id":"p157","no":154,"name":"5\" Fancy (2Pcs)","rate":4800,"unit":"1 BOX","category":"Attractive Fancy Collections","discount":70,"price":1440.0},{"id":"p158","no":155,"name":"12 Shots Rider (1Pcs)","rate":600,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":180.0},{"id":"p159","no":156,"name":"12 Multi - Colour Shots (1Pcs)","rate":700,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":210.0},{"id":"p160","no":157,"name":"15 Multi Colour Shots (1Pcs)","rate":880,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":264.0},{"id":"p161","no":158,"name":"25 Shots Rider (1Pcs)","rate":880,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":264.0},{"id":"p162","no":159,"name":"30 Multi Colour Shots (1Pcs)","rate":1400,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":420.0},{"id":"p163","no":160,"name":"30 Multi Colour Shots (1Pcs)-Bluestar","rate":1600,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":480.0},{"id":"p164","no":161,"name":"30 Shots-Crackling (1Pcs)","rate":1720,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":516.0},{"id":"p165","no":162,"name":"60 Multi Colour Shots (1Pcs)","rate":2800,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":840.0},{"id":"p166","no":163,"name":"120 Multi Colour Shots (1Pcs)","rate":5600,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":1680.0},{"id":"p167","no":164,"name":"240 Multi Colour Shots (1Pcs)","rate":11200,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":3360.0},{"id":"p168","no":165,"name":"10 *10 Colour Tail Shot","rate":12800,"unit":"1 BOX","category":"Colourful Aerial Shots","discount":70,"price":3840.0},{"id":"p169","no":166,"name":"Gift Pack (16-Items)-Kids","rate":240,"unit":"1 BOX","category":"Gift Packs","discount":0,"price":240},{"id":"p170","no":167,"name":"Gift Pack (21-Items)","rate":300,"unit":"1 BOX","category":"Gift Packs","discount":0,"price":300},{"id":"p171","no":168,"name":"Gift Pack (25-Items)","rate":350,"unit":"1 BOX","category":"Gift Packs","discount":0,"price":350},{"id":"p172","no":169,"name":"Gift Pack (30-Items)","rate":600,"unit":"1 BOX","category":"Gift Packs","discount":0,"price":600},{"id":"p173","no":170,"name":"Gift Pack (40-Items)","rate":800,"unit":"1 BOX","category":"Gift Packs","discount":0,"price":800},{"id":"p174","no":171,"name":"Gift Pack (50-Items)","rate":1000,"unit":"1 BOX","category":"Gift Packs","discount":0,"price":1000},{"id":"p175","no":172,"name":"Gift Pack (60-Items)","rate":1300,"unit":"1 BOX","category":"Gift Packs","discount":0,"price":1300},{"id":"p176","no":173,"name":"Customised Gift Pack-Customer's Wish","rate":0,"unit":"CUSTOM","category":"Special / Custom","discount":0,"price":0},{"id":"p177","no":174,"name":"SPL Premium Family Combo Offers - Rs.3,000.00","rate":3000,"unit":"1 BOX","category":"Premium Family Combo Offers","discount":0,"price":3000},{"id":"p178","no":175,"name":"SPL Premium Family Combo Offers - Rs.5,000.00","rate":5000,"unit":"1 BOX","category":"Premium Family Combo Offers","discount":0,"price":5000},{"id":"p179","no":176,"name":"SPL Premium Family Combo Offers - Rs.7,000.00","rate":7000,"unit":"1 BOX","category":"Premium Family Combo Offers","discount":0,"price":7000},{"id":"p180","no":177,"name":"SPL Premium Family Combo Offers - Rs.9,000.00","rate":9000,"unit":"1 BOX","category":"Premium Family Combo Offers","discount":0,"price":9000},{"id":"p181","no":178,"name":"Customised Combo Offers-Customer's Wish","rate":0,"unit":"CUSTOM","category":"Special / Custom","discount":0,"price":0},{"id":"p182","no":179,"name":"Fruits Series (1Pcs)","rate":840,"unit":"1 BOX","category":"New Arrivals","discount":70,"price":252.0},{"id":"p183","no":180,"name":"Bharath Tank (2Pcs)","rate":700,"unit":"1 BOX","category":"New Arrivals","discount":70,"price":210.0},{"id":"p184","no":181,"name":"H20 Gun (2Pcs)","rate":600,"unit":"1 BOX","category":"New Arrivals","discount":70,"price":180.0},{"id":"p185","no":182,"name":"Hanuman Gatha (1Pcs)","rate":700,"unit":"1 BOX","category":"New Arrivals","discount":70,"price":210.0},{"id":"p186","no":183,"name":"Bahubali Sward (1Pcs)","rate":600,"unit":"1 BOX","category":"New Arrivals","discount":70,"price":180.0},{"id":"p187","no":184,"name":"Hand Sky Shot (1Pcs)","rate":2200,"unit":"1 BOX","category":"New Arrivals","discount":70,"price":660.0}];
 let cart = [];
 
-
-/* ==================================================
-   CATEGORY
-   ================================================== */
-
 const categoryBox = document.getElementById('category');
-
-const categories = [
-  ...new Set(products.map(p => p.category))
-];
-
+const categories = [...new Set(products.map(p => p.category))];
 categories.forEach(c => {
-
-  const option = document.createElement('option');
-
-  option.value = c;
-  option.textContent = c;
-
-  categoryBox.appendChild(option);
-
+  const o = document.createElement('option');
+  o.value = c; o.textContent = c;
+  categoryBox.appendChild(o);
 });
 
+function money(n) { return Number(n).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2}); }
 
-/* ==================================================
-   DISPLAY PRODUCTS
-   ================================================== */
-
-function displayProducts(){
-
+function displayProducts() {
   const box = document.getElementById('products');
-
-  const search =
-    document.getElementById('search').value
-    .toLowerCase();
-
-  const selectedCategory =
-    categoryBox.value;
-
-  const filtered = products.filter(p => {
-
-    const matchesSearch =
-      p.name.toLowerCase().includes(search);
-
-    const matchesCategory =
-      selectedCategory === 'All' ||
-      p.category === selectedCategory;
-
-    return matchesSearch && matchesCategory;
-
-  });
-
-
-  box.innerHTML = '';
-
-
-  if(filtered.length === 0){
-
-    box.innerHTML =
-      '<div class="empty">😔 Product not found</div>';
-
-    return;
-
-  }
-
-
-  filtered.forEach(p => {
-
-    const card =
-      document.createElement('div');
-
-    card.className = 'card';
-
-    card.innerHTML = `
-
-      <div class="icon">🎆</div>
-
-      <h3>${p.name}</h3>
-
-      <div class="category">
-        ${p.category}
-      </div>
-
-      ${
-        p.discount > 0
-        ? `<span class="discount">${p.discount}% OFF</span>`
-        : ''
-      }
-
-      <div class="price">
-        ₹${Number(p.price).toFixed(2)}
-      </div>
-
-      ${
-        p.discount > 0
-        ? `<div class="mrp">₹${Number(p.rate).toFixed(2)}</div>`
-        : ''
-      }
-
-      <div style="font-size:12px;color:#777;margin-top:5px">
-        ${p.unit}
-      </div>
-
-      <button class="add">
-        ➕ Add to Cart
-      </button>
-
-    `;
-
-    card
-      .querySelector('.add')
-      .addEventListener('click', () => addToCart(p.id));
-
-    box.appendChild(card);
-
-  });
-
-}
-
-
-/* ==================================================
-   ADD TO CART
-   ================================================== */
-
-function addToCart(id){
-
-  const product =
-    products.find(p => p.id === id);
-
-  if(!product) return;
-
-  const existing =
-    cart.find(item => item.id === id);
-
-  if(existing){
-
-    existing.qty++;
-
-  }else{
-
-    cart.push({
-      ...product,
-      qty:1
-    });
-
-  }
-
-  updateCart();
-
-  openCart();
-
-}
-
-
-/* ==================================================
-   REMOVE PRODUCT COMPLETELY
-   ================================================== */
-
-function removeFromCart(id){
-
-  cart =
-    cart.filter(item => item.id !== id);
-
-  updateCart();
-
-}
-
-
-/* ==================================================
-   CHANGE QUANTITY
-   ================================================== */
-
-function changeQty(id, amount){
-
-  const item =
-    cart.find(item => item.id === id);
-
-  if(!item) return;
-
-  item.qty += amount;
-
-  if(item.qty <= 0){
-
-    removeFromCart(id);
-    return;
-
-  }
-
-  updateCart();
-
-}
-
-
-/* ==================================================
-   UPDATE CART
-   ================================================== */
-
-function updateCart(){
-
-  const box =
-    document.getElementById('cartItems');
-
-  box.innerHTML = '';
-
-  let total = 0;
-  let count = 0;
-
-
-  if(cart.length === 0){
-
-    box.innerHTML =
-      '<div class="empty">🛒 Cart is empty</div>';
-
-  }
-
-
-  cart.forEach(item => {
-
-    total += Number(item.price) * item.qty;
-
-    count += item.qty;
-
-
-    const div =
-      document.createElement('div');
-
-    div.className = 'cartItem';
-
-    div.innerHTML = `
-
-      <div class="cartName">
-        ${item.name}
-      </div>
-
-      <div>
-        ₹${Number(item.price).toFixed(2)}
-        × ${item.qty}
-      </div>
-
-      <div class="controls">
-
-        <button onclick="changeQty(${item.id},-1)">
-          −
-        </button>
-
-        <strong>${item.qty}</strong>
-
-        <button onclick="changeQty(${item.id},1)">
-          +
-        </button>
-
-        <button
-          class="remove"
-          onclick="removeFromCart(${item.id})"
-        >
-          🗑 Remove
-        </button>
-
-      </div>
-
-    `;
-
-    box.appendChild(div);
-
-  });
-
-
-  document.getElementById('total')
-    .textContent = total.toFixed(2);
-
-  document.getElementById('cartCount')
-    .textContent = count;
-
-}
-
-
-/* ==================================================
-   OPEN / CLOSE CART
-   ================================================== */
-
-function openCart(){
-
-  document.getElementById('cart')
-    .style.display = 'block';
-
-}
-
-function closeCart(){
-
-  document.getElementById('cart')
-    .style.display = 'none';
-
-}
-
-
-/* ==================================================
-   WHATSAPP ORDER
-   ================================================== */
-
-function whatsappOrder(){
-
-  if(cart.length === 0){
-
-    alert('Please add a product first.');
-
-    return;
-
-  }
-
-
-  let message =
-    '🎆 NEW FIREWORKS ORDER 🎆%0A%0A';
-
-  cart.forEach(item => {
-
-    message +=
-      `• ${item.name}%0A` +
-      `  Qty: ${item.qty}%0A` +
-      `  Price: ₹${(item.price * item.qty).toFixed(2)}%0A%0A`;
-
-  });
-
-
-  const total =
-    cart.reduce(
-      (sum,item) =>
-        sum + item.price * item.qty,
-      0
-    );
-
-
-  message +=
-    `💰 TOTAL: ₹${total.toFixed(2)}%0A`;
-
-
-  /*
-    CHANGE THIS NUMBER
-    Example:
-    India WhatsApp number:
-    919876543210
-  */
-
-  const whatsappNumber =
-    '916379577670';
-
-
-  window.open(
-    'https://wa.me/' +
-    whatsappNumber +
-    '?text=' +
-    message,
-    '_blank'
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  const cat = categoryBox.value;
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(q) && (cat === 'All' || p.category === cat)
   );
-
-}
-
-
-/* ==================================================
-   UPI PAYMENT
-   ================================================== */
-
-function payUPI(){
-
-  if(cart.length === 0){
-
-    alert('Please add a product first.');
-
+  box.innerHTML = '';
+  document.getElementById('count').textContent = filtered.length + ' products';
+  if (!filtered.length) {
+    box.innerHTML = '<div class="empty">😔 Product not found</div>';
     return;
-
   }
+  filtered.forEach(p => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    const isCustom = p.unit === 'CUSTOM';
+    card.innerHTML = `
+      <div class="icon">${isCustom ? '🎁' : '🎆'}</div>
+      <div class="no">Product No: ${p.no}</div>
+      <h3>${escapeHtml(p.name)}</h3>
+      <div class="cat">${escapeHtml(p.category)} • ${escapeHtml(p.unit)}</div>
+      ${p.discount ? `<span class="discount">${p.discount}% OFF</span>` : ''}
+      ${isCustom ? '<div class="price">Custom Quote</div>' : `<div class="price">₹${money(p.price)}</div><div class="mrp">₹${money(p.rate)}</div>`}
+      <button class="add ${isCustom ? 'custom' : ''}" onclick="addToCart('${p.id}')">${isCustom ? '💬 Add Enquiry' : '➕ Add to Cart'}</button>
+    `;
+    box.appendChild(card);
+  });
+}
 
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 
-  const upi =
-    document.getElementById('upiId').value;
-
-  const total =
-    cart.reduce(
-      (sum,item) =>
-        sum + item.price * item.qty,
-      0
-    );
-
-
-  const url =
-    'upi://pay' +
-    '?pa=' + encodeURIComponent(upi) +
-    '&pn=' + encodeURIComponent('Fireworks Store') +
-    '&am=' + total.toFixed(2) +
-    '&cu=INR';
-
-
-  window.location.href = url;
-
+function addToCart(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const existing = cart.find(x => x.id === id);
+  if (existing) existing.qty++;
+  else cart.push({...p, qty:1});
+  updateCart();
+  // Stay on the product list so more products can be selected.
+  showToast('Added to cart ✓');
 }
 
 
-/* ==================================================
-   SEARCH / CATEGORY EVENTS
-   ================================================== */
+function showToast(text) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = text;
+  t.style.display = 'block';
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => {
+    t.style.display = 'none';
+  }, 1100);
+}
 
-document
-  .getElementById('search')
-  .addEventListener('input', displayProducts);
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  updateCart();
+}
 
-categoryBox
-  .addEventListener('change', displayProducts);
+function changeQty(id, amount) {
+  const item = cart.find(x => x.id === id);
+  if (!item) return;
+  item.qty += amount;
+  if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+  updateCart();
+}
 
+function updateCart() {
+  const box = document.getElementById('cartItems');
+  box.innerHTML = '';
+  let total = 0, count = 0;
+  if (!cart.length) box.innerHTML = '<div class="empty">🛒 Cart is empty</div>';
+  cart.forEach(item => {
+    const isCustom = item.unit === 'CUSTOM';
+    const lineTotal = isCustom ? 0 : Number(item.price) * item.qty;
+    total += lineTotal; count += item.qty;
+    const div = document.createElement('div');
+    div.className = 'cartItem';
+    div.innerHTML = `
+      <div class="cartName">${escapeHtml(item.name)}</div>
+      <div>${isCustom ? 'Custom Quote' : '₹' + money(item.price) + ' × ' + item.qty + ' = ₹' + money(lineTotal)}</div>
+      <div class="controls">
+        <button onclick="changeQty('${item.id}',-1)">−</button>
+        <strong>${item.qty}</strong>
+        <button onclick="changeQty('${item.id}',1)">+</button>
+        <button class="remove" onclick="removeFromCart('${item.id}')">🗑 Remove</button>
+      </div>
+    `;
+    box.appendChild(div);
+  });
+  document.getElementById('total').textContent = money(total);
+  document.getElementById('cartCount').textContent = count;
+}
 
-/* ==================================================
-   START WEBSITE
-   ================================================== */
+function openCart() { document.getElementById('overlay').style.display = 'block'; }
+function closeCart() { document.getElementById('overlay').style.display = 'none'; }
 
+function customerDetails() {
+  const name = document.getElementById('customerName').value.trim();
+  const phone = document.getElementById('customerPhone').value.trim();
+  const email = document.getElementById('customerEmail').value.trim();
+  const address = document.getElementById('customerAddress').value.trim();
+  const notes = document.getElementById('customerNotes').value.trim();
+  if (!cart.length) { alert('Please add a product first.'); return null; }
+  if (!name || !phone || !email || !address) {
+    alert('Please fill Customer Name, Phone, Email and Delivery Address.');
+    return null;
+  }
+  return {name, phone, email, address, notes};
+}
+
+function orderText() {
+  const d = customerDetails();
+  if (!d) return null;
+  let text = '🎆 GOWSALYA CRACKERS - NEW ORDER 🎆\\n\\n';
+  text += '👤 Customer Details\\n';
+  text += 'Name: ' + d.name + '\\n';
+  text += 'Phone: ' + d.phone + '\\n';
+  text += 'Email: ' + d.email + '\\n';
+  text += 'Address: ' + d.address + '\\n';
+  if (d.notes) text += 'Notes: ' + d.notes + '\\n';
+  text += '\\n🛒 PRODUCTS\\n';
+  let total = 0;
+  cart.forEach(item => {
+    const line = item.unit === 'CUSTOM' ? 0 : Number(item.price) * item.qty;
+    total += line;
+    text += '• ' + item.name + ' | Qty: ' + item.qty + ' | ' + (item.unit === 'CUSTOM' ? 'Custom Quote' : '₹' + money(line)) + '\\n';
+  });
+  text += '\\n💰 TOTAL: ₹' + money(total);
+  return text;
+}
+
+function whatsappOrder() {
+  const text = orderText();
+  if (!text) return;
+  const url = 'https://wa.me/916379577670?text=' + encodeURIComponent(text);
+  window.open(url, '_blank');
+}
+
+function emailOrder() {
+  const text = orderText();
+  if (!text) return;
+  const subject = 'New Order - GOWSALYA CRACKERS';
+  window.location.href = 'mailto:gowsalyacrackers@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
+}
+
+function payUPI() {
+  if (!cart.length) { alert('Please add a product first.'); return; }
+  const total = cart.reduce((s, x) => s + (x.unit === 'CUSTOM' ? 0 : Number(x.price) * x.qty), 0);
+  if (total <= 0) { alert('Custom quote items cannot be paid directly. Please send the enquiry on WhatsApp.'); return; }
+  const upi = 'upi://pay?pa=' + encodeURIComponent('muthusubash2003@axl') +
+    '&pn=' + encodeURIComponent('GOWSALYA CRACKERS') +
+    '&am=' + total.toFixed(2) + '&cu=INR';
+  window.location.href = upi;
+}
+
+document.getElementById('search').addEventListener('input', displayProducts);
+categoryBox.addEventListener('change', displayProducts);
 displayProducts();
 updateCart();
-
 </script>
-
 </body>
 </html>
